@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PPL Mobile</string>
+    <string name="home">Home</string>
+    <string name="push">Push</string>
+    <string name="pull">Pull</string>
+    <string name="legs">Legs</string>
+</resources>
