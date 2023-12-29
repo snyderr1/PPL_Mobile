@@ -4,4 +4,7 @@
     <string name="push">Push</string>
     <string name="pull">Pull</string>
     <string name="legs">Legs</string>
+    <string name="welcome">Welcome to PPL Mobile \n Choose a workout-type below to get started.</string>
+    <string name="workout">Test message to determine activity type.</string>
+
 </resources>

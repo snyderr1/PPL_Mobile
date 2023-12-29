@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PPL Mobile"
 include(":app")
+include(":build")
