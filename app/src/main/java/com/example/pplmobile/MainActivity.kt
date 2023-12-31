@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         val pullButton = findViewById<TextView>(R.id.pullButton)
         val legsButton = findViewById<TextView>(R.id.legsButton)
         val homeButton = findViewById<TextView>(R.id.homeButton)
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 

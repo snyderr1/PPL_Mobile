@@ -27,6 +27,7 @@ class WorkoutFragment : Fragment(R.layout.workout) {
         // This will pass the ArrayList to our Adapter
         val adapter = ExerciseAdapter(data)
         recyclerview.adapter = adapter
+
     }
     public fun setCurrentPage(requestedWorkout: String){
         this.currentPage = requestedWorkout

@@ -7,39 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/home"
         app:layout_constraintEnd_toStartOf="@+id/pushButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextSizeCheck" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/pushButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/push"
         app:layout_constraintEnd_toStartOf="@+id/pullButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/homeButton" />
+        app:layout_constraintStart_toEndOf="@+id/homeButton"
+        tools:ignore="TextSizeCheck" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/pullButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/pull"
         app:layout_constraintEnd_toStartOf="@+id/legsButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pushButton" />
+        app:layout_constraintStart_toEndOf="@+id/pushButton"
+        tools:ignore="TextSizeCheck" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/legsButton"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="@string/legs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/pullButton" />
+        app:layout_constraintStart_toEndOf="@+id/pullButton"
+        tools:ignore="TextSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
