@@ -24,7 +24,11 @@ class ExerciseAdapter(private val exerciseList: List<ExerciseData>): RecyclerVie
 
         holder.exerciseName.text = exerciseDataInstance.exerciseName
         holder.exerciseQuantity.text = exerciseDataInstance.exerciseQuantity
+        holder.editButton.setOnClickListener{
 
+           holder.exerciseName.isEnabled = !(holder.exerciseName.isEnabled)
+           holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -35,5 +39,6 @@ class ExerciseAdapter(private val exerciseList: List<ExerciseData>): RecyclerVie
         val exerciseIcon: ImageView = itemView.findViewById(R.id.exerciseIcon)
         val exerciseName: TextView = itemView.findViewById(R.id.exerciseName)
         val exerciseQuantity: TextView = itemView.findViewById(R.id.exerciseQuantity)
+        val editButton: android.widget.Button = itemView.findViewById(R.id.editButton)
     }
 }

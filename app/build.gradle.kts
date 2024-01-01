@@ -1,13 +1,17 @@
+val bundleID = "com.example.pplmobile"
+val fragmentVersion = "1.6.2"
+val nav_version = "2.7.6"
+val room_version = "2.6.1"
+
 plugins {
+
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
 
+
 }
 
-val bundleID = "com.example.pplmobile"
-val fragmentVersion = "1.6.2"
-val nav_version = "2.7.6"
 
 android {
     namespace = bundleID
@@ -55,6 +59,9 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     implementation("androidx.recyclerview:recyclerview:1.2.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    //ksp("androidx.room:room-compiler:$room_version")
 
 
 }

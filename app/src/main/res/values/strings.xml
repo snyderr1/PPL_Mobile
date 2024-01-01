@@ -8,5 +8,8 @@
     <string name="workout">Test message to determine activity type.</string>
     <string name="exercise_icon">Exercise Icon</string>
     <string name="exercise_edit">Exercise Edit</string>
+    <string name="edit_button_description">Edit</string>
+    <string name="exercise_quantity_description">Sets and/or Reps</string>
+    <string name="exercise_name_description">Exercise</string>
 
 </resources>

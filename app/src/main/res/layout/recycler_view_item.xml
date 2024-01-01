@@ -20,6 +20,7 @@
 
     <Button
         android:id="@+id/editButton"
+        android:contentDescription="@string/edit_button_description"
         style="@style/EditButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,13 +41,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/exerciseNameWrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:enabled="false">
 
       <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/exerciseName"
+          android:hint="@string/exercise_name_description"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:hint="hint"
           android:textColorHint="#546E7A"
           tools:ignore="DuplicateSpeakableTextCheck" />
 
@@ -55,13 +57,14 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/exerciseQuantityWrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:enabled="false">
 
       <com.google.android.material.textfield.TextInputEditText
           android:id="@+id/exerciseQuantity"
+          android:hint="@string/exercise_quantity_description"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:hint="hint"
           android:textColorHint="#546E7A" />
 
     </com.google.android.material.textfield.TextInputLayout>

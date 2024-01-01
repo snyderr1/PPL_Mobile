@@ -1,11 +1,15 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    //ext.ksp_version = "1.5.31-1.0.0"
     repositories {
         google()
+        gradlePluginPortal()
     }
     dependencies {
         val nav_version = "2.7.6"
+
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+
     }
 }
 
