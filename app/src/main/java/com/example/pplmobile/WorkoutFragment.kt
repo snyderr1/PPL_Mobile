@@ -6,6 +6,10 @@ import android.view.View
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import com.example.pplmobile.database.ExerciseRoomDatabase
+import com.example.pplmobile.database.Exercise
+import java.lang.IllegalStateException
 
 class WorkoutFragment : Fragment(R.layout.workout) {
     private var currentPage: String = "Undefined Workout Type"
@@ -17,11 +21,19 @@ class WorkoutFragment : Fragment(R.layout.workout) {
         recyclerview.layoutManager = LinearLayoutManager(context)
 
         val data = ArrayList<ExerciseData>()
-
         val args: WorkoutFragmentArgs by navArgs()
         this.setCurrentPage(args.workoutArgs)
-        for (i in 1..20) {
-            data.add(ExerciseData(R.drawable.meirl, this.currentPage, "None"))
+
+        try{
+            val exerciseDao = ExerciseRoomDatabase.getDatabase(requireContext()).exerciseDao()
+
+            val savedExercises: List<Exercise> =
+                exerciseDao.getExerciseDao(type = "this.currentPage")
+            for (row in savedExercises){
+                data.add(ExerciseData(R.drawable.meirl, row.exerciseName, row.exerciseQuantity))
+            }
+        } catch(e: IllegalStateException) {
+            data.add(ExerciseData(R.drawable.meirl, "No data", "None"))
         }
 
         // This will pass the ArrayList to our Adapter
@@ -29,7 +41,9 @@ class WorkoutFragment : Fragment(R.layout.workout) {
         recyclerview.adapter = adapter
 
     }
-    public fun setCurrentPage(requestedWorkout: String){
+
+
+    private fun setCurrentPage(requestedWorkout: String){
         this.currentPage = requestedWorkout
     }
 }

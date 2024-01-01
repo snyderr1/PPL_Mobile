@@ -2,10 +2,11 @@ package com.example.pplmobile
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.pplmobile.database.ExerciseRoomDatabase
 
 class ExerciseAdapter(private val exerciseList: List<ExerciseData>): RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,10 +26,18 @@ class ExerciseAdapter(private val exerciseList: List<ExerciseData>): RecyclerVie
         holder.exerciseName.text = exerciseDataInstance.exerciseName
         holder.exerciseQuantity.text = exerciseDataInstance.exerciseQuantity
         holder.editButton.setOnClickListener{
+            if(holder.exerciseName.isEnabled) {
 
-           holder.exerciseName.isEnabled = !(holder.exerciseName.isEnabled)
-           holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
+                holder.exerciseName.isEnabled = false
+                holder.exerciseQuantity.isEnabled = false
+            }
+            holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
+
         }
+    }
+
+    private fun insertExercise(){
+
     }
 
     override fun getItemCount(): Int {
