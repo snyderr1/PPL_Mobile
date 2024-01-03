@@ -5,12 +5,13 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ExerciseDao {
 
-    @Query("SELECT * from exercise WHERE type = :type")
-    fun getExerciseDao(type:String): List<Exercise>
+    @Query("SELECT * from exercise")
+    fun getExerciseData(): Flow<List<Exercise>>
 
     // Specify the conflict strategy as IGNORE, when the user tries to add an
     // existing Item into the database.

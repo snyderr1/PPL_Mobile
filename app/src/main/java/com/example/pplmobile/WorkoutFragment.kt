@@ -11,7 +11,7 @@ import com.example.pplmobile.database.ExerciseRoomDatabase
 import com.example.pplmobile.database.Exercise
 import java.lang.IllegalStateException
 
-class WorkoutFragment : Fragment(R.layout.workout) {
+class WorkoutFragment: Fragment(R.layout.workout) {
     private var currentPage: String = "Undefined Workout Type"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
@@ -20,21 +20,12 @@ class WorkoutFragment : Fragment(R.layout.workout) {
         val recyclerview = view.findViewById<RecyclerView>(R.id.workout_recycler)
         recyclerview.layoutManager = LinearLayoutManager(context)
 
-        val data = ArrayList<ExerciseData>()
+        val data = ArrayList<Exercise>()
         val args: WorkoutFragmentArgs by navArgs()
         this.setCurrentPage(args.workoutArgs)
 
-        try{
-            val exerciseDao = ExerciseRoomDatabase.getDatabase(requireContext()).exerciseDao()
+        data.add(Exercise(R.drawable.meirl, "No data", "None", this.currentPage))
 
-            val savedExercises: List<Exercise> =
-                exerciseDao.getExerciseDao(type = "this.currentPage")
-            for (row in savedExercises){
-                data.add(ExerciseData(R.drawable.meirl, row.exerciseName, row.exerciseQuantity))
-            }
-        } catch(e: IllegalStateException) {
-            data.add(ExerciseData(R.drawable.meirl, "No data", "None"))
-        }
 
         // This will pass the ArrayList to our Adapter
         val adapter = ExerciseAdapter(data)

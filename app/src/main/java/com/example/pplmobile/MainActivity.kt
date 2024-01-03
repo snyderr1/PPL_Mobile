@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : AppCompatActivity() {
 
+    private val pages: Array<String> = arrayOf("Push", "Pull", "Legs", "Home")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -36,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         homeButton.setOnClickListener{
             navController.navigate(R.id.homeFragment)
         }
-
+    }
+    private fun _initButton(){
 
     }
 }

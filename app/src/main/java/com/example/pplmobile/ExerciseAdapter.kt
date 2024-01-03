@@ -5,10 +5,13 @@ import android.view.ViewGroup
 import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pplmobile.database.Exercise
 import com.example.pplmobile.database.ExerciseRoomDatabase
+import kotlinx.coroutines.CoroutineScope
 
-class ExerciseAdapter(private val exerciseList: List<ExerciseData>): RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
+class ExerciseAdapter(private val exerciseList: List<Exercise>): RecyclerView.Adapter<ExerciseAdapter.ViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
@@ -21,23 +24,18 @@ class ExerciseAdapter(private val exerciseList: List<ExerciseData>): RecyclerVie
     override fun onBindViewHolder(holder: ViewHolder, position: Int){
         val exerciseDataInstance = exerciseList[position]
 
-        holder.exerciseIcon.setImageResource(exerciseDataInstance.image)
+        //holder.exerciseIcon.setImageResource(exerciseDataInstance.image)
 
         holder.exerciseName.text = exerciseDataInstance.exerciseName
         holder.exerciseQuantity.text = exerciseDataInstance.exerciseQuantity
         holder.editButton.setOnClickListener{
             if(holder.exerciseName.isEnabled) {
-
                 holder.exerciseName.isEnabled = false
                 holder.exerciseQuantity.isEnabled = false
             }
             holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
 
         }
-    }
-
-    private fun insertExercise(){
-
     }
 
     override fun getItemCount(): Int {

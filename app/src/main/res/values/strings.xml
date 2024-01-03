@@ -11,5 +11,6 @@
     <string name="edit_button_description">Edit</string>
     <string name="exercise_quantity_description">Sets and/or Reps</string>
     <string name="exercise_name_description">Exercise</string>
+    <string name="add">add</string>
 
 </resources>
