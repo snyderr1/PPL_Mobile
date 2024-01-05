@@ -14,11 +14,12 @@ data class ExerciseViewState(
     val name: String = "None"
 )
 class ExerciseViewModel(private val repo: ExerciseRepository): ViewModel() {
-    private val data: LiveData<List<Exercise>> = repo.all.asLiveData()
+    val data: LiveData<List<Exercise>> = repo.all.asLiveData()
 
     fun insert(exercise:Exercise) = viewModelScope.launch{
         repo.insert(exercise)
     }
+
 
     class ExerciseViewModelFactory(private val repository: ExerciseRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -3,10 +3,14 @@ package com.example.pplmobile
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : AppCompatActivity() {
-
+    private val exerciseViewModel: ExerciseViewModel by viewModels {
+        ExerciseViewModel.ExerciseViewModelFactory((application as ExerciseApplication).repo)
+    }
     private val pages: Array<String> = arrayOf("Push", "Pull", "Legs", "Home")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +41,5 @@ class MainActivity : AppCompatActivity() {
         homeButton.setOnClickListener{
             navController.navigate(R.id.homeFragment)
         }
-    }
-    private fun _initButton(){
-
     }
 }

@@ -11,7 +11,7 @@ import com.example.pplmobile.database.Exercise
 import com.example.pplmobile.database.ExerciseRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 
-class ExerciseAdapter(private val exerciseList: List<Exercise>): RecyclerView.Adapter<ExerciseAdapter.ViewHolder>()  {
+class ExerciseAdapter(private val exerciseList: List<Exercise>, private val currentViewModel: ExerciseViewModel): RecyclerView.Adapter<ExerciseAdapter.ViewHolder>()  {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
@@ -30,9 +30,13 @@ class ExerciseAdapter(private val exerciseList: List<Exercise>): RecyclerView.Ad
         holder.exerciseQuantity.text = exerciseDataInstance.exerciseQuantity
         holder.editButton.setOnClickListener{
             if(holder.exerciseName.isEnabled) {
-                holder.exerciseName.isEnabled = false
-                holder.exerciseQuantity.isEnabled = false
+                val newExercise: Exercise = Exercise(
+                    exerciseName=holder.exerciseName.getText().toString(),
+                    exerciseQuantity=holder.exerciseQuantity.getText().toString(),
+                    exerciseType="placeholder")
+                currentViewModel.insert(newExercise)
             }
+            holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
             holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
 
         }
