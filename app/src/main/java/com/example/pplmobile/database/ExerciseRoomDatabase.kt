@@ -21,9 +21,6 @@ abstract class ExerciseRoomDatabase: RoomDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
                     var exerciseDao = database.exerciseDao()
-
-
-                    // Add sample words.
                     var placeholder = Exercise(exerciseName = "Placeholder", exerciseQuantity = "15", exerciseType = "none")
                     exerciseDao.insert(placeholder)
 

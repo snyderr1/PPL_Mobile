@@ -25,18 +25,17 @@ class WorkoutFragment: Fragment(R.layout.workout) {
         val recyclerview = view.findViewById<RecyclerView>(R.id.workout_recycler)
         recyclerview.layoutManager = LinearLayoutManager(context)
 
-        val data = ArrayList<Exercise>()
+        var data: MutableList<Exercise> = ArrayList<Exercise>()
         val args: WorkoutFragmentArgs by navArgs()
         this.setCurrentPage(args.workoutArgs)
-        data.add(Exercise(R.drawable.meirl, "No data", "None", this.currentPage))
+        //data.add(Exercise(R.drawable.meirl, "No data", "None", this.currentPage))
         currentViewModel.data.observe(viewLifecycleOwner, Observer{ exercises ->
             for(e in exercises) {
-                if(data.filter {it.id == e.id}.isEmpty() ) {
+                if(data.filter {it.id == e.id && it.exerciseType == this.currentPage}.isEmpty() ) {
                     data.add(e)
                 }
             }
         })
-        // This will pass the ArrayList to our Adapter
         val adapter = ExerciseAdapter(data, currentViewModel)
         recyclerview.adapter = adapter
 

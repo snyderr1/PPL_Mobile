@@ -2,16 +2,12 @@ package com.example.pplmobile
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.content.Context
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pplmobile.database.Exercise
-import com.example.pplmobile.database.ExerciseRoomDatabase
-import kotlinx.coroutines.CoroutineScope
 
-class ExerciseAdapter(private val exerciseList: List<Exercise>, private val currentViewModel: ExerciseViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private val currentViewModel: ExerciseViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     private val CONTENT = 1
     private val ADD = 2
 
@@ -43,14 +39,24 @@ class ExerciseAdapter(private val exerciseList: List<Exercise>, private val curr
                         exerciseQuantity = holder.exerciseQuantity.getText().toString(),
                         exerciseType = "placeholder"
                     )
-                    currentViewModel.insert(newExercise)
+                    currentViewModel.update(newExercise)
                 }
                 holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
                 holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
 
             }
+        } else {
+            holder as AddButtonViewHolder
+            holder.addButton.setOnClickListener {
+                val newExercise: Exercise = Exercise(
+                    exerciseName = "N/A",
+                    exerciseQuantity = "Touch to start typing",
+                    exerciseType = "placeholder"
+                )
+                currentViewModel.insert(newExercise)
+                notifyItemChanged(position)
+            }
         }
-
     }
 
     override fun getItemViewType(position:Int): Int{
@@ -72,5 +78,6 @@ class ExerciseAdapter(private val exerciseList: List<Exercise>, private val curr
         val editButton: android.widget.Button = itemView.findViewById(R.id.editButton)
     }
     class AddButtonViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        val addButton: com.google.android.material.floatingactionbutton.FloatingActionButton = itemView.findViewById(R.id.addExercise)
     }
 }

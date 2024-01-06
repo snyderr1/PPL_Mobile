@@ -13,6 +13,10 @@ class ExerciseRepository(private val exerciseDao: ExerciseDao) {
         exerciseDao.insert(exercise)
     }
     @WorkerThread
+    suspend fun update(exercise: Exercise){
+        exerciseDao.update(exercise)
+    }
+    @WorkerThread
     suspend fun remove(exercise: Exercise){
         exerciseDao.insert(exercise)
     }
