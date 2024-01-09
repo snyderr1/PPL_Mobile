@@ -40,6 +40,7 @@ class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private v
                         exerciseType = "placeholder"
                     )
                     currentViewModel.update(newExercise)
+                    notifyItemChanged(position)
                 }
                 holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
                 holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
@@ -54,7 +55,7 @@ class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private v
                     exerciseType = "placeholder"
                 )
                 currentViewModel.insert(newExercise)
-                notifyItemChanged(position)
+                this.notifyDataSetChanged()
             }
         }
     }

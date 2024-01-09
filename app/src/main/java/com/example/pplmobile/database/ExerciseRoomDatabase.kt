@@ -20,9 +20,7 @@ abstract class ExerciseRoomDatabase: RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    var exerciseDao = database.exerciseDao()
-                    var placeholder = Exercise(exerciseName = "Placeholder", exerciseQuantity = "15", exerciseType = "none")
-                    exerciseDao.insert(placeholder)
+
 
                 }
             }
