@@ -25,7 +25,7 @@ class WorkoutFragment: Fragment(R.layout.workout) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerview = view.findViewById<RecyclerView>(R.id.workout_recycler)
-        recyclerview.layoutManager = LinearLayoutManager(context)
+        recyclerview.layoutManager = LinearLayoutManager(this.context)
 
 
         val args: WorkoutFragmentArgs by navArgs()

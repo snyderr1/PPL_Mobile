@@ -35,6 +35,7 @@ class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private v
             holder.editButton.setOnClickListener {
                 if (holder.exerciseName.isEnabled) {
                     val newExercise: Exercise = Exercise(
+                        id = this.exerciseList.size,
                         exerciseName = holder.exerciseName.getText().toString(),
                         exerciseQuantity = holder.exerciseQuantity.getText().toString(),
                         exerciseType = "placeholder"

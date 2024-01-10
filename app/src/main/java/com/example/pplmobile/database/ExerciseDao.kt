@@ -18,7 +18,7 @@ interface ExerciseDao {
     // Specify the conflict strategy as IGNORE, when the user tries to add an
     // existing Item into the database.
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(row: Exercise)
+    suspend fun insert(row: Exercise): Long
 
     @Update
     suspend fun update(row: Exercise)
