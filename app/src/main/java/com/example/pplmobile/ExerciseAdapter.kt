@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pplmobile.database.Exercise
 
-class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private val currentViewModel: ExerciseViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class ExerciseAdapter(private val currentViewModel: ExerciseViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     private val CONTENT = 1
     private val ADD = 2
+    private var exerciseList: List<Exercise> = emptyList<Exercise>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == CONTENT) {
@@ -35,7 +36,7 @@ class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private v
             holder.editButton.setOnClickListener {
                 if (holder.exerciseName.isEnabled) {
                     val newExercise: Exercise = Exercise(
-                        id = this.exerciseList.size,
+                        id = position+1,
                         exerciseName = holder.exerciseName.getText().toString(),
                         exerciseQuantity = holder.exerciseQuantity.getText().toString(),
                         exerciseType = "placeholder"
@@ -72,6 +73,12 @@ class ExerciseAdapter(private var exerciseList: MutableList<Exercise>, private v
     override fun getItemCount(): Int {
         return exerciseList.size + 1
     }
+
+    fun setData(data: List<Exercise>){
+        this.exerciseList = data
+        notifyDataSetChanged()
+    }
+
 
     class ContentViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val exerciseIcon: ImageView = itemView.findViewById(R.id.exerciseIcon)
