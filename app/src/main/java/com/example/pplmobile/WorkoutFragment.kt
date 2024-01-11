@@ -30,10 +30,11 @@ class WorkoutFragment: Fragment(R.layout.workout) {
 
         val args: WorkoutFragmentArgs by navArgs()
         this.setCurrentPage(args.workoutArgs)
-        val adapter = ExerciseAdapter(this.currentViewModel)
+        val adapter = ExerciseAdapter(this.currentViewModel, this.currentPage)
         this.currentViewModel.data.observe(viewLifecycleOwner, Observer{
+            //this id a kludge fer real
             val newData: List<Exercise> = it
-            adapter.setData(newData)
+            adapter.setData(newData.filter{it.exerciseType == this.currentPage})
 
         })
         recyclerview.adapter = adapter

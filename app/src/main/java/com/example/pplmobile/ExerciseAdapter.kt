@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pplmobile.database.Exercise
 
-class ExerciseAdapter(private val currentViewModel: ExerciseViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
+class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private val currentPage: String): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     private val CONTENT = 1
     private val ADD = 2
     private var exerciseList: List<Exercise> = emptyList<Exercise>()
@@ -39,7 +39,7 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel): Recycler
                         id = position+1,
                         exerciseName = holder.exerciseName.getText().toString(),
                         exerciseQuantity = holder.exerciseQuantity.getText().toString(),
-                        exerciseType = "placeholder"
+                        exerciseType = currentPage
                     )
                     currentViewModel.update(newExercise)
                     notifyItemChanged(position)
@@ -54,7 +54,7 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel): Recycler
                 val newExercise: Exercise = Exercise(
                     exerciseName = "N/A",
                     exerciseQuantity = "Touch to start typing",
-                    exerciseType = "placeholder"
+                    exerciseType = currentPage
                 )
                 currentViewModel.insert(newExercise)
                 this.notifyDataSetChanged()
