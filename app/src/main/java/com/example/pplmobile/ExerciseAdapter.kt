@@ -10,9 +10,11 @@ import com.example.pplmobile.database.Exercise
 class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private val currentPage: String): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
     private val CONTENT = 1
     private val ADD = 2
+    private var addEnabled = true
     private var exerciseList: List<Exercise> = emptyList<Exercise>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
         if(viewType == CONTENT) {
             val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.recycler_view_item, parent, false)
@@ -35,6 +37,7 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
             holder.exerciseQuantity.text = exerciseDataInstance.exerciseQuantity
             holder.editButton.setOnClickListener {
                 if (holder.exerciseName.isEnabled) {
+                    this.addEnabled = true
                     val newExercise: Exercise = Exercise(
                         id = position+1,
                         exerciseName = holder.exerciseName.getText().toString(),
@@ -43,6 +46,8 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
                     )
                     currentViewModel.update(newExercise)
                     notifyItemChanged(position)
+                } else {
+                    this.addEnabled = false
                 }
                 holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
                 holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
@@ -51,13 +56,15 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
         } else {
             holder as AddButtonViewHolder
             holder.addButton.setOnClickListener {
-                val newExercise: Exercise = Exercise(
-                    exerciseName = "N/A",
-                    exerciseQuantity = "Touch to start typing",
-                    exerciseType = currentPage
-                )
-                currentViewModel.insert(newExercise)
-                this.notifyDataSetChanged()
+                if(this.addEnabled) {
+                    val newExercise: Exercise = Exercise(
+                        exerciseName = "N/A",
+                        exerciseQuantity = "Touch to start typing",
+                        exerciseType = currentPage
+                    )
+                    currentViewModel.insert(newExercise)
+                    this.notifyDataSetChanged()
+                }
             }
         }
     }
