@@ -21,7 +21,7 @@ class ExerciseViewModel(private val repo: ExerciseRepository): ViewModel() {
     }
 
     fun update(exercise:Exercise) = viewModelScope.launch{
-        repo.update(exercise)
+        repo.updateByParameter(exercise)
     }
 
 

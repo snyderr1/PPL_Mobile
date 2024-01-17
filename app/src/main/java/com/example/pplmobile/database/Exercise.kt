@@ -8,9 +8,11 @@ data class Exercise(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "name")
-    val exerciseName: String,
+    var exerciseName: String,
     @ColumnInfo(name = "quantity")
-    val exerciseQuantity: String,
+    var exerciseQuantity: String,
     @ColumnInfo(name = "type")
     val exerciseType: String,
+    @ColumnInfo(name = "exerciseRow")
+    val exerciseRow: Int
 )

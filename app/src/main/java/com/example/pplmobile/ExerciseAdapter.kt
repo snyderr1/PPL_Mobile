@@ -39,13 +39,13 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
                 if (holder.exerciseName.isEnabled) {
                     this.addEnabled = true
                     val newExercise: Exercise = Exercise(
-                        id = position+1,
                         exerciseName = holder.exerciseName.getText().toString(),
                         exerciseQuantity = holder.exerciseQuantity.getText().toString(),
-                        exerciseType = currentPage
+                        exerciseType = currentPage,
+                        exerciseRow = position+1,
                     )
                     currentViewModel.update(newExercise)
-                    notifyItemChanged(position)
+                    this.notifyItemChanged(position+1)
                 } else {
                     this.addEnabled = false
                 }
@@ -58,16 +58,21 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
             holder.addButton.setOnClickListener {
                 if(this.addEnabled) {
                     val newExercise: Exercise = Exercise(
-                        exerciseName = "N/A",
+                        exerciseName = position.toString(),
                         exerciseQuantity = "Touch to start typing",
-                        exerciseType = currentPage
+                        exerciseType = currentPage,
+                        exerciseRow = position + 1
                     )
                     currentViewModel.insert(newExercise)
-                    this.notifyDataSetChanged()
+                    this.notifyItemChanged(position)
                 }
             }
         }
     }
+
+
+
+
 
     override fun getItemViewType(position:Int): Int{
         if(position == exerciseList.size){
