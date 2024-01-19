@@ -11,18 +11,31 @@
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
       android:orientation="vertical">
+
+    <Button
+        android:id="@+id/removeButton"
+        style="@style/RemoveButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/remove"
+        android:visibility="gone"
+        app:icon="@android:drawable/ic_menu_delete"
+        app:iconGravity="textTop"
+        app:iconSize="30dp" />
+
     <ImageView
         android:id="@+id/exerciseIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="@string/exercise_icon"
+        android:visibility="visible"
         tools:src="@drawable/meirl" />
 
     <Button
         android:id="@+id/editButton"
         android:contentDescription="@string/edit_button_description"
         style="@style/EditButton"
-        android:layout_width="match_parent"
+        android:layout_width="50dp"
         android:layout_height="match_parent"
         app:icon="@android:drawable/ic_menu_edit"
         app:iconGravity="textTop"

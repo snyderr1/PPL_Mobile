@@ -35,47 +35,17 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
 
             holder.exerciseName.text = exerciseDataInstance.exerciseName
             holder.exerciseQuantity.text = exerciseDataInstance.exerciseQuantity
-            holder.editButton.setOnClickListener {
-                if (holder.exerciseName.isEnabled) {
-                    this.addEnabled = true
-                    val newExercise: Exercise = Exercise(
-                        exerciseName = holder.exerciseName.getText().toString(),
-                        exerciseQuantity = holder.exerciseQuantity.getText().toString(),
-                        exerciseType = currentPage,
-                        exerciseRow = position+1,
-                    )
-                    currentViewModel.update(newExercise)
-                    this.notifyItemChanged(position+1)
-                } else {
-                    this.addEnabled = false
-                }
-                holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
-                holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
-
-            }
+            holder.editButton.setOnClickListener {editButtonListener(holder, position)}
+            holder.removeButton.setOnClickListener {removeButtonListener(holder, position)}
         } else {
+
             holder as AddButtonViewHolder
-            holder.addButton.setOnClickListener {
-                if(this.addEnabled) {
-                    val newExercise: Exercise = Exercise(
-                        exerciseName = position.toString(),
-                        exerciseQuantity = "Touch to start typing",
-                        exerciseType = currentPage,
-                        exerciseRow = position + 1
-                    )
-                    currentViewModel.insert(newExercise)
-                    this.notifyItemChanged(position)
-                }
-            }
+            holder.addButton.setOnClickListener {addButtonListener(holder, position)}
         }
     }
 
-
-
-
-
     override fun getItemViewType(position:Int): Int{
-        if(position == exerciseList.size){
+        if(position == exerciseList.size || exerciseList.size == 0){
             return ADD
         } else {
             return CONTENT
@@ -97,8 +67,63 @@ class ExerciseAdapter(private val currentViewModel: ExerciseViewModel, private v
         val exerciseName: TextView = itemView.findViewById(R.id.exerciseName)
         val exerciseQuantity: TextView = itemView.findViewById(R.id.exerciseQuantity)
         val editButton: android.widget.Button = itemView.findViewById(R.id.editButton)
+        val removeButton: android.widget.Button = itemView.findViewById(R.id.removeButton)
     }
+
     class AddButtonViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val addButton: com.google.android.material.floatingactionbutton.FloatingActionButton = itemView.findViewById(R.id.addExercise)
+    }
+
+
+    private fun editButtonListener(holder: ContentViewHolder, position: Int){
+        if (holder.exerciseName.isEnabled) {
+            this.addEnabled = true
+            holder.removeButton.visibility = View.GONE
+            holder.exerciseIcon.visibility = View.VISIBLE
+            val newExercise: Exercise = Exercise(
+                exerciseName = holder.exerciseName.getText().toString(),
+                exerciseQuantity = holder.exerciseQuantity.getText().toString(),
+                exerciseType = currentPage,
+                exerciseRow = position,
+            )
+            currentViewModel.update(newExercise)
+            this.notifyItemChanged(position)
+        } else {
+            holder.removeButton.visibility = View.VISIBLE
+            holder.exerciseIcon.visibility = View.GONE
+            this.addEnabled = false
+        }
+
+        holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
+        holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
+    }
+    private fun removeButtonListener(holder: ContentViewHolder, position: Int){
+        if (holder.exerciseName.isEnabled) {
+            val newExercise: Exercise = Exercise(
+                exerciseName = holder.exerciseName.getText().toString(),
+                exerciseQuantity = holder.exerciseQuantity.getText().toString(),
+                exerciseType = currentPage,
+                exerciseRow = position,
+            )
+            currentViewModel.delete(newExercise)
+            this.notifyDataSetChanged()
+            holder.exerciseName.isEnabled = !(holder.exerciseQuantity.isEnabled)
+            holder.exerciseQuantity.isEnabled = !(holder.exerciseQuantity.isEnabled)
+            holder.removeButton.visibility = View.GONE
+            holder.exerciseIcon.visibility = View.VISIBLE
+            this.addEnabled = true
+        }
+    }
+    private fun addButtonListener(holder: AddButtonViewHolder, position: Int){
+        if(this.addEnabled) {
+            val newExercise: Exercise = Exercise(
+                exerciseName = position.toString(),
+                exerciseQuantity = "Touch to start typing",
+                exerciseType = currentPage,
+                exerciseRow = position
+            )
+            currentViewModel.insert(newExercise)
+            this.notifyItemChanged(position)
+        }
     }
 }

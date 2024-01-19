@@ -25,10 +25,12 @@ interface ExerciseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(row: Exercise): Long
 
-
-
     @Update
     suspend fun update(row: Exercise)
+
+    @Query("UPDATE exercise set exerciseRow = exerciseRow - 1 WHERE exerciseRow > :rowNum and type=:page")
+    suspend fun updateAll(rowNum: Int, page: String)
+
 
 
     @Delete

@@ -18,12 +18,16 @@ class ExerciseViewModel(private val repo: ExerciseRepository): ViewModel() {
 
     fun insert(exercise:Exercise) = viewModelScope.launch{
         repo.insert(exercise)
+
     }
 
     fun update(exercise:Exercise) = viewModelScope.launch{
         repo.updateByParameter(exercise)
     }
 
+    fun delete(exercise:Exercise) = viewModelScope.launch{
+        repo.deleteByParameter(exercise)
+    }
 
     class ExerciseViewModelFactory(private val repository: ExerciseRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

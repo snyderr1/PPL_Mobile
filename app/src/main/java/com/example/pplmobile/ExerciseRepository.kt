@@ -25,8 +25,16 @@ class ExerciseRepository(private val exerciseDao: ExerciseDao) {
         exerciseDao.update(updatee)
     }
 
+
     @WorkerThread
-    suspend fun remove(exercise: Exercise){
-        exerciseDao.insert(exercise)
+    suspend fun deleteByParameter(exercise: Exercise){
+        var updatee: Exercise = exerciseDao.getExerciseByRowAndPage(exercise.exerciseRow, exercise.exerciseType)
+        exerciseDao.updateAll(updatee.exerciseRow, updatee.exerciseType)
+        exerciseDao.delete(updatee)
+    }
+
+    @WorkerThread
+    suspend fun delete(exercise: Exercise){
+        exerciseDao.delete(exercise)
     }
 }

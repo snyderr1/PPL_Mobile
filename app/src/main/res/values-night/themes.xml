@@ -17,6 +17,10 @@
         <item name="colorPrimary">#00FFFFFF</item>
         <item name="iconTint">@color/white</item>
     </style>
+    <style name="RemoveButton" parent="@android:style/Widget.Button">
+        <item name="colorPrimary">#00FF0000</item>
+        <item name="iconTint">@color/white</item>
+    </style>
     <style name="AddButton">
         <item name="backgroundTint">@color/my_dark_secondary</item>
     </style>
