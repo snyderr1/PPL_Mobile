@@ -2,14 +2,18 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.WorkoutTracker" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/my_light_secondary</item>
         <item name="colorSecondary">@color/my_light_secondary</item>
         <item name="android:colorBackground">@color/white</item>
-        <item name="android:background">@color/white</item>
         <item name="android:textAppearanceButton">@style/ButtonText</item>
         <item name="android:colorButtonNormal">@color/my_light_secondary</item>
+        <item name="android:popupBackground">#00000000</item>
 
     </style>
+    <style name="NavBar">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="ButtonText">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">12dp</item>

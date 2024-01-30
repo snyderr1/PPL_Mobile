@@ -63,7 +63,8 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:textColorHint="#546E7A"
-          tools:ignore="DuplicateSpeakableTextCheck" />
+          tools:ignore="DuplicateSpeakableTextCheck"
+          android:textCursorDrawable="@null"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +79,8 @@
           android:hint="@string/exercise_quantity_description"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:textColorHint="#546E7A" />
+          android:textColorHint="#546E7A"
+          android:textCursorDrawable="@null"/>
 
     </com.google.android.material.textfield.TextInputLayout>
   </LinearLayout>
